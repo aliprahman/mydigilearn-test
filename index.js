@@ -44,13 +44,13 @@ const swaggerSpect = {
         }],
         servers: [
             {
-                url: `http://localhost:${port}`,
-                description: 'local server',
-            },
-            {
                 url: `https://article-digilearn.herokuapp.com`,
                 description: 'Development server',
             },
+            {
+                url: `http://localhost:${port}`,
+                description: 'local server',
+            }
         ],
     },
     apis: [
