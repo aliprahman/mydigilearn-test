@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const app = express();
+const port = process.env.PORT || 5000
 
 // setup config app
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -82,6 +83,6 @@ app.use((err, req, res, next) => {
 })
 
 // run app
-app.listen(process.env.APP_PORT, () => {
-  console.log(`App Started on Port ${process.env.APP_PORT}`);
+app.listen(port, () => {
+  console.log(`App Started on Port ${port}`);
 });
