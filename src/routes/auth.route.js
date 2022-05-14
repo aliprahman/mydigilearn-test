@@ -47,6 +47,7 @@ const authMiddleware = require('../middleware/token.middleware');
  *   post:
  *     summary: Register new user.
  *     tags: [User]
+ *     security: []
  *     requestBody:
  *       required: true
  *       content:
@@ -98,6 +99,7 @@ router.post('/sign-up', userValidation.validateSignUp, userController.signUp);
  *   post:
  *     summary: Login user with email and password.
  *     tags: [User]
+ *     security: []
  *     requestBody:
  *       required: true
  *       content:
@@ -151,10 +153,7 @@ router.post('/sign-in', userValidation.validateSignIn, userController.signIn);
  *      summary: GET user profile
  *      tags: [User]
  *      security:
- *         bearerAuth:
- *          type: http
- *          scheme: bearer
- *          bearerFormat: JWT
+ *        - jwt: []
  *      responses:
  *       "200":
  *         description: OK
@@ -174,17 +173,10 @@ router.get('/profile', authMiddleware.verifyToken, userController.profile);
  *      summary: GET logout user
  *      tags: [User]
  *      security:
- *         bearerAuth:
- *          type: http
- *          scheme: bearer
- *          bearerFormat: JWT
+ *        - jwt: []
  *      responses:
  *       "200":
  *         description: OK
- *         content:
- *            application/json:
- *                schema:
- *                    $ref: '#/components/schemas/User'
  */
  router.get('/sign-out', authMiddleware.verifyToken, userController.signOut);
 

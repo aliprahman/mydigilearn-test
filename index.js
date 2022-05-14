@@ -13,31 +13,44 @@ app.use(cors())
 const swaggerJSDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express")
 const swaggerSpect = {
-  definition: {
-      openapi: "3.0.0",
-      info: {
-          title: "Express API with Swagger",
-          version: "0.1.0",
-          description: "API Documentation",
-          license: {
-              name: "MIT",
-              url: "https://spdx.org/licenses/MIT.html",
-          },
-          contact: {
-              name: "Alip Rahman",
-              email: "aliprrahman@gmail.com",
-          },
-      },
-      servers: [
-          {
-              url: `http://localhost:${process.env.APP_PORT}`,
-              description: 'Development server',
-          },
-      ],
-  },
-  apis: [
-     "src/routes/*.js"
-  ],
+    definition: {
+        openapi: "3.0.0",
+        info: {
+            title: "Express API with Swagger",
+            version: "0.1.0",
+            description: "API Documentation",
+            license: {
+                name: "MIT",
+                url: "https://spdx.org/licenses/MIT.html",
+            },
+            contact: {
+                name: "Alip Rahman",
+                email: "aliprrahman@gmail.com",
+            },
+        },
+        components: {
+            securitySchemes: {
+                jwt: {
+                    type: "http",
+                    scheme: "bearer",
+                    in: "header",
+                    bearerFormat: "JWT"
+                  }
+            },
+        },
+        security: [{
+            jwt: []
+        }],
+        servers: [
+            {
+                url: `http://localhost:${process.env.APP_PORT}`,
+                description: 'Development server',
+            },
+        ],
+    },
+    apis: [
+        "src/routes/*.js"
+    ],
 }
 const swaggerDocument = swaggerJSDoc(swaggerSpect)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, { explorer: true }));
