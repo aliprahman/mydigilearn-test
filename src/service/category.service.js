@@ -1,7 +1,7 @@
 const db = require('../../database/models');
 const { Op } = require("sequelize");
 
-exports.fetchCategories = async (search) => {
+exports.fetchCategories = async (search = '') => {
     return db.Category.findAll({
         where: { 
             name:  {
