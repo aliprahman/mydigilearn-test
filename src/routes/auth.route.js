@@ -92,7 +92,6 @@ const authMiddleware = require('../middleware/token.middleware');
 */
 router.post('/sign-up', userValidation.validateSignUp, userController.signUp);
 
-
 /**
  * @swagger
  * /auth/sign-in:
