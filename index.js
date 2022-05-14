@@ -56,17 +56,17 @@ app.get('/', (req, res, next) => {
 app.use('/', require('./src/routes/index'));
 
 // error handle
-// app.use((req, res, next) => {
-// 	res.status(404).send({
-// 		message: 'Route Path Not found'
-// 	});
-// })
-// app.use((err, req, res, next) => {
-// 	res.status(500).send({
-// 		status: 'Internal server error',
-// 		error: err.message ? err.message : ''
-// 	});
-// })
+app.use((req, res, next) => {
+	res.status(404).send({
+		message: 'Route Path Not found'
+	});
+})
+app.use((err, req, res, next) => {
+	res.status(500).send({
+		status: 'Internal server error',
+		error: err.message ? err.message : ''
+	});
+})
 
 // run app
 app.listen(process.env.APP_PORT, () => {
